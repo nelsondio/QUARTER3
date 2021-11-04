@@ -22,6 +22,22 @@ app.delete('/', (req, res) => {
     res.send("Received a DELETE request");
 });
 
+app.get('/users', (req, res) => {
+    res.send("GET HTTP method on user resource");
+});
+
+app.post('/users', (req, res) => {
+    res.send("POST HTTP method on user resource");
+});
+
+app.put('/users', (req, res) => {
+    res.send("PUT HTTP method on user resource");
+});
+
+app.delete('/users', (req, res) => {
+    res.send("DELETE HTTP method on user resource");
+});
+
 app.listen(process.env.PORT, () => 
     console.log(`Example app listening on port ${process.env.PORT}!`),
 );
