@@ -12,13 +12,10 @@ app.use(express.urlencoded( { extended: true }));
 app.use(cors());
 
 // Our middleware to authenticate user
-app.use((req, res, next) =>{
-    req.me = users[1];
-    next();
-});
+
 
 // in Modular Models in Express as Data sources. CONTEXT
-app.use( (req, res) => {
+app.use( (req, res, next) => {
     req.context = {
         models,
         me: models.users[1],
@@ -101,7 +98,7 @@ app.delete('/messages/:messageId', (req, res) => {
     // we use spread operator to filter out the message with a given ID
     req.context.models.messages = otherMessages;
     
-    return res.send(messages);
+    return res.send(message);
 });
 
 // SERVER PORT LISTENING
