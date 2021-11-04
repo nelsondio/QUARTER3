@@ -1,10 +1,20 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 
+// Built-in middleware
+app.use(express.json());
+app.use(express.urlencoded( { extended: true }));
 app.use(cors());
+
+// Our middleware to authenticate user
+app.use((req, res, next) =>{
+    req.me = users[1];
+    next();
+});
 
 app.get('/', (req, res) => {
     res.send("Received a GET request");
@@ -48,11 +58,19 @@ app.get('/messages', (req, res) => {
 });
 
 app.get('/messages/:messageId', (req, res) => {
-    res.send(users[req.params.messageId]);
+    res.send(messages[req.params.messageId]);
 });
 
 app.post('/messages', (req, res) => {
-    res.send("POST HTTP method on user resource");
+    const id = uuidv4();
+    const message = {
+        id,
+        text: req.body.text,
+        userId: req.me.id,
+    };
+    messages[id] = message; // object property initialization
+    
+    return res.send(message);
 });
 
 app.put('/messages/:messageId', (req, res) => {
@@ -60,7 +78,14 @@ app.put('/messages/:messageId', (req, res) => {
 });
 
 app.delete('/messages/:messageId', (req, res) => {
-    res.send("DELETE HTTP method on user resource");
+    const {
+        [req.params.messageId]: message,
+        ...otherMessages
+    } = messages;
+    // we use spread operator to filter out the message with a given ID
+    messages = otherMessages;
+    
+    return res.send(messages);
 });
 
 // SERVER PORT LISTENING
