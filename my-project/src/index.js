@@ -53,7 +53,7 @@ app.delete('/', (req, res) => {
 // MESSAGES ROUTES
 
 // SERVER PORT LISTENING
-app.listen(process.env.PORT, () => 
+app.listen(process.env.PORT || 8888, () => 
     console.log(`Example app listening on port ${process.env.PORT}!`),
 );
 /*
