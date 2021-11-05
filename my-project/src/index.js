@@ -1,18 +1,18 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-import { v4 as uuidv4 } from 'uuid';
+
 import models from './models';
+import routes from './routes';
 
 const app = express();
 
 // Built-in middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded( { extended: true }));
-app.use(cors());
 
-// Our middleware to authenticate user
-
+// Our middleware to authenticate user DELETED
 
 // in Modular Models in Express as Data sources. CONTEXT
 app.use( (req, res, next) => {
@@ -22,6 +22,13 @@ app.use( (req, res, next) => {
     };
     next();
 });
+
+// Mount routes as modular routes. Each route receives a URI
+app.use('/session', routes.session);
+app.use('/users', routes.user);
+app.use('/messages', routes.message);
+
+
 
 app.get('/', (req, res) => {
     res.send("Received a GET request");
@@ -40,66 +47,10 @@ app.delete('/', (req, res) => {
 });
 
 // ROUTE SESSION as pseudo authentication
-app.get('/session', (req, res) => {
-    //return res.send(users[req.me.id]); // outside variable, not PURE
-    return res.send(req.context.models.users[req.context.me.id]);
-});
 
-app.get('/users', (req, res) => {
-    res.send(Object.values(req.context.models.users));
-});
-
-app.get('/users/:userId', (req, res) => {
-    res.send(req.context.models.users[req.params.userId]);
-});
-
-app.post('/users', (req, res) => {
-    res.send("POST HTTP method on user resource");
-});
-
-app.put('/users', (req, res) => {
-    res.send("PUT HTTP method on user resource");
-});
-
-app.delete('/users', (req, res) => {
-    res.send("DELETE HTTP method on user resource");
-});
+// ROUTES '/users'
 
 // MESSAGES ROUTES
-app.get('/messages', (req, res) => {
-    res.send(Object.values(req.context.models.messages));
-});
-
-app.get('/messages/:messageId', (req, res) => {
-    res.send(req.context.models.messages[req.params.messageId]);
-});
-
-app.post('/messages', (req, res) => {
-    const id = uuidv4();
-    const message = {
-        id,
-        text: req.body.text,
-        userId: req.context.me.id,
-    };
-    req.context.models.messages[id] = message; // object property initialization
-    
-    return res.send(message);
-});
-
-app.put('/messages/:messageId', (req, res) => {
-    res.send("PUT HTTP method on user resource");
-});
-
-app.delete('/messages/:messageId', (req, res) => {
-    const {
-        [req.params.messageId]: message,
-        ...otherMessages
-    } = req.context.models.messages;
-    // we use spread operator to filter out the message with a given ID
-    req.context.models.messages = otherMessages;
-    
-    return res.send(message);
-});
 
 // SERVER PORT LISTENING
 app.listen(process.env.PORT, () => 
