@@ -53,7 +53,7 @@
 4) git@github.com:nelsondio/QUARTER3.git
 5) need to set url to point to it
 
-## INSTRUCTIONS AFTER CREATIN EMPTY REPOSITORY
+## INSTRUCTIONS AFTER CREATING EMPTY REPOSITORY
 ### …or create a new repository on the command line
 1) echo "# QUARTER3" >> README.md
 2) git init
@@ -78,3 +78,4 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 2) git branch -M main: it forced sunday into main
 3) git push origin main: it synced!!! But now no more sunday.
 4) plan: push all branches.
+5) Pushed: git push origin day-of-week
