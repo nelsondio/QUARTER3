@@ -72,3 +72,9 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 ### git remote set-url git@github.com:nelsondio/QUARTER3.git
 
 ### git remote set-url origin git@github.com:nelsondio/QUARTER3.git git@github.com:nelsondio/npx-express-mcc-ejs.
+
+## RESULTS
+1) git push origin main: error => no reference or something.
+2) git branch -M main: it forced sunday into main
+3) git push origin main: it synced!!! But now no more sunday.
+4) plan: push all branches.
