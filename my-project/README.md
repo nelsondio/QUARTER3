@@ -72,3 +72,17 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 ### git remote set-url git@github.com:nelsondio/QUARTER3.git
 
 ### git remote set-url origin git@github.com:nelsondio/QUARTER3.git git@github.com:nelsondio/npx-express-mcc-ejs.
+
+## Robin Wieruch Tutorials source code
+### january-part2 Minimal Nodejs with babel setup
+### february-part3 How to setup express in nodejs
+### march-part4 How to create a REST API with express in nodejs
+### april-part4 Express routes: URIs are REST resources
+### may-part4 Making sense of REST with Express
+### june-part4 Application-level express middleware
+### july-part4 Modular models in express as data sources
+### august-part4 Modular routing with express router
+### september-final Mongo connection, mongoose, final Wieruch's version
+### PENDING : challenges
+#### work on /users URI - CRUD operations
+#### work on /users /messages to update record with appropriate validation, i.e., only the owner of the record can modify his own messages, no other users' messages.
