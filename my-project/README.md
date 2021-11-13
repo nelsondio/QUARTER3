@@ -10,7 +10,7 @@
 4) git@github.com:nelsondio/QUARTER3.git
 5) need to set url to point to it
 
-## INSTRUCTIONS AFTER CREATIN EMPTY REPOSITORY
+## INSTRUCTIONS AFTER CREATING EMPTY REPOSITORY
 ### …or create a new repository on the command line
 1) echo "# QUARTER3" >> README.md
 2) git init
